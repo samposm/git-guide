@@ -1,8 +1,10 @@
 # 2. Git for One Person
 
+The simplest case is a one-person workflow. 
+
 ## git init
 
-The simplest case is a one-person workflow. Let's create a new project
+Let's create a new project
 
 ```sh
 mkdir myproject
@@ -10,16 +12,17 @@ cd myproject
 git init
 ```
 
-The `git init` will create a hidden `.git` directory (so, `myproject/.git`)
-where git will keep all its stuff. In s strict sense, the `.git` directory is
-now a repository, or repo for short. In everyday language, the whole
-`myproject` directory, containing both the working files and the `.git`
-directory, is a project repository. If you for some reason want your project
-directory contain the version history no more, you can just `rm -rf .git` and
-the version history is destroyed. Also the `.git` directory contains just
-ordinary files, so you can copy, zip or tar either the `.git` directory or the
-whole project directory and copy or move it around, and it will still function
-as a repository in the new place, wherever you put it.
+The `git init` will create a hidden `.git` directory (so, `myproject/.git`) 
+where git will keep all its stuff. In a strict sense, the `.git` directory is 
+now a repository, or repo for short. In everyday language, the whole 
+`myproject` directory, containing both the working files (Or working tree, as 
+it is called in git slang. Tree, because it usually contains subdirectories, 
+too.) and the `.git` directory, is a project repository. If you for some reason 
+want to totally delete your project's version history, you can just `rm -rf 
+.git` and the version history is destroyed. Also the `.git` directory contains 
+just ordinary files, so you can copy, zip or tar either the `.git` directory or 
+the whole project directory and copy or move it around, and it will still 
+function as a repository in the new place, wherever you put it.
 
 ## git commit
 
@@ -31,9 +34,9 @@ git add a.txt
 git commit -m'First commit: add a.txt'
 ```
 
-We create a text file, write some text in it, then we *add* the file to git's
-list of files to be committed. Then we save (or commit) a snapshot (or a
-commit) of our project. Let's go on
+We create a text file, write some text in it, then we *add* the file to git's 
+list of files to be committed, also called the *staging area*, or *index*. Then 
+we save (or commit) a snapshot (or a commit) of our project. Let's go on
 
 ```sh
 <edit> a.txt
@@ -68,6 +71,13 @@ Traditionally, we first write a simple one-line description of the commit, then
 leave one empty line, and then we can write as long a commit message as we
 want. After this, save and exit the editor. The commit is done.
 
+By git tradition, we write the commit messages in active tense: *add file* 
+instead of *added file*. Kind of thinking about someone else who is considering 
+to perhaps include our commits in their version of the project: What will 
+adding the work in these commits *do*, instead of what we *did*. Also, it is a 
+couple of letters shorter. You can of course write the commit messages however 
+you like.
+
 ## git log
 
 Now we can view the project log:
@@ -100,15 +110,15 @@ git log
 Here, each commit is identified by a hash-code. The first commit by
 `d7b4272...` and so on.
 
-**Why not number the commits?** At its roots, git is designed for collaborative
-work, where commits are seen as quite independent units, sometimes also called
-changesets. Say, I am working on a project, and someone else contributes some
-important bugfixes. I can take only those commits that contain the piece of
-work that they made to edit the codebase to make the bugfixes. I would then
-apply only these commits on top my ongoing work. (Actually I might apply them
-to the *bottom* of my ongoing work, but we'll come to rebasing in a later
-chapter.) In these situations, a linear numbering of commits would be different
-for each person, and thus git doesn't attempt to do numbering at all.
+**Why not number the commits?** At its roots, git is designed for collaborative 
+work, where commits are seen as quite independent units, sometimes also called 
+changesets. Say, I am working on a project, and someone else contributes some 
+important bugfixes. I can take only those commits that contain the piece of 
+work that they made on the bugfixes. I would then apply only these commits on 
+top my ongoing work. (Actually I might apply them to the *bottom* of my ongoing 
+work, but we'll come to rebasing in a later chapter.) In these situations, a 
+linear numbering of commits would be different for each person, and thus git 
+doesn't attempt to do numbering at all.
 
 Instead git calculates a [SHA-1][1] identifier from the contents and the commit
 message of a commit, and uses that to identify a commit. You don't need to use
@@ -132,8 +142,10 @@ git log --all --graph --decorate --oneline
     * ffdabdc Edit a.txt
     * d7b4272 First commit: add a.txt
 
+## Alias
+
 I like it so much that I make an *alias* for it, by adding this to my
-`~/.gitconfig`.
+`~/.gitconfig`:
 
     [alias]
         lg = log --oneline --abbrev-commit --all --graph --decorate
@@ -168,7 +180,7 @@ git status
     Untracked files:
       (use "git add <file>..." to include in what will be committed)
 
-    	x.txt
+        x.txt
 
     nothing added to commit but untracked files present (use "git add" to track)
 
@@ -185,12 +197,12 @@ git status
       (use "git add <file>..." to update what will be committed)
       (use "git checkout -- <file>..." to discard changes in working directory)
 
-    	modified:   b.txt
+        modified:   b.txt
 
     Untracked files:
       (use "git add <file>..." to include in what will be committed)
 
-    	x.txt
+        x.txt
 
     no changes added to commit (use "git add" and/or "git commit -a")
 
@@ -203,11 +215,11 @@ In general, the status of a file can be one of these four:
 
 * **Committed:** File has been committed in some previous commit, and has not
   been edited since. The file in the working directory is the same version as in
-  the repository.
+  the repository. `git status` will keep quiet about these.
 
 * **Staged:** You have run `git add` on the file, so the file is staged to be
   committed, but you have not run `git commit` yet. Specifically, the version of
-  the file at the moment when you ran `git commit` is staged for the commit.
+  the file at the moment when you ran `git add` is staged for the commit.
 
 * **Modified:** File has been modified, and the changes have not been added
   (`git add`) or committed.
@@ -219,14 +231,16 @@ the file after staging it.
 
 Most version control systems don't have the concept of staging. Either a file
 is unmodified after the last commit, or it has uncommitted changes, and that's
-it. But in git, the process has two steps: first `git add` the files you want
-to include in the commit and after you had added all the files, run `git
-commit`. The files you stage with `git add` can be a subset of the files you
-have edited, and only this subset will be committed. The other modified files
-will keep their status as modified. You can add several files in one command
-(`git add a.txt b.txt`), and use all normal shell wildcards (`git add *.txt`
-etc.). If you have staged a file, and edit it further, you need to stage it
-again (run `git add` again) for the new edits to be staged for the next commit.
+it. But in git, the commit process has two steps:
+
+First use `git add` to prepare the files into the staging area, and then run 
+`git commit`. The files you stage with `git add` can be a subset of the files 
+you have edited, and only this subset will be committed. The other modified 
+files will keep their status as modified, and their modified content is not 
+committed. You can add several files in one command (`git add a.txt b.txt`), 
+and use all normal shell wildcards (`git add *.txt` etc.). If you have staged a 
+file, and edit it further, you need to stage it again (run `git add` again) for 
+the new edits to be staged for the next commit.
 
 You can stage all files, *including* previously untracked files, that have been
 modified since last commit, by `git add --all`. Or you can stage all modified
@@ -253,7 +267,7 @@ area as a bookkeeping mechanism: these are the files that I have already
 reviewed. Or, after some work modifying several files, you can commit the files
 in separate commits, if that fees like a good idea. (Git even allows for
 [interactive staging][3], to select only part of the edits to a file to be
-staged for the commit.)
+staged for next commit.)
 
 [3]: https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging
 
