@@ -1,8 +1,11 @@
 # 2. Git for One Person
 
-The simplest case is a one-person workflow. 
+The simplest case is a one-person workflow. We only save snapshots (commits)
+of our work as we proceed in a linear fashion.
 
-## git init
+## Create commits
+
+### `git init`
 
 Let's create a new project
 
@@ -12,19 +15,19 @@ cd myproject
 git init
 ```
 
-The `git init` will create a hidden `.git` directory (so, `myproject/.git`) 
-where git will keep all its stuff. In a strict sense, the `.git` directory is 
-now a repository, or repo for short. In everyday language, the whole 
-`myproject` directory, containing both the working files (Or working tree, as 
-it is called in git slang. Tree, because it usually contains subdirectories, 
-too.) and the `.git` directory, is a project repository. If you for some reason 
-want to totally delete your project's version history, you can just `rm -rf 
-.git` and the version history is destroyed. Also the `.git` directory contains 
-just ordinary files, so you can copy, zip or tar either the `.git` directory or 
-the whole project directory and copy or move it around, and it will still 
+The `git init` will create a hidden `.git` directory (so, `myproject/.git`)
+where git will keep all its stuff. In a strict sense, the `.git` directory is
+now a repository, or repo for short. In everyday language, the whole
+`myproject` directory, containing both the working files (Or working tree, as
+it is called in git slang. Tree, because it usually contains subdirectories,
+too.) and the `.git` directory, is a project repository. If you for some reason
+want to totally delete your project's version history, you can just `rm -rf
+.git` and the version history is destroyed. Also the `.git` directory contains
+just ordinary files, so you can copy, zip or tar either the `.git` directory or
+the whole project directory and copy or move it around, and it will still
 function as a repository in the new place, wherever you put it.
 
-## git commit
+### `git add` and `git commit`
 
 Now we need some files
 
@@ -34,8 +37,8 @@ git add a.txt
 git commit -m'First commit: add a.txt'
 ```
 
-We create a text file, write some text in it, then we *add* the file to git's 
-list of files to be committed, also called the *staging area*, or *index*. Then 
+We create a text file, write some text in it, then we *add* the file to git's
+list of files to be committed, also called the *staging area*, or *index*. Then
 we save (or commit) a snapshot (or a commit) of our project. Let's go on
 
 ```sh
@@ -67,18 +70,50 @@ Now git will open your favorite editor, and you can write:
     #       new file:   b.txt
     #
 
+### Commit Messages
+
 Traditionally, we first write a simple one-line description of the commit, then
 leave one empty line, and then we can write as long a commit message as we
 want. After this, save and exit the editor. The commit is done.
 
-By git tradition, we write the commit messages in active tense: *add file* 
-instead of *added file*. Kind of thinking about someone else who is considering 
-to perhaps include our commits in their version of the project: What will 
-adding the work in these commits *do*, instead of what we *did*. Also, it is a 
-couple of letters shorter. You can of course write the commit messages however 
+By git tradition, we write the commit messages in active tense: *add file*
+instead of *added file*. Kind of thinking about someone else who is considering
+to perhaps include our commits in their version of the project: What will
+adding the work in these commits *do*, instead of what we *did*. Also, it is a
+couple of letters shorter. You can of course write the commit messages however
 you like.
 
-## git log
+## `git rm`
+
+If you want the next commit to record that a file is removed from the
+project, you can
+
+```sh
+git rm file.txt
+````
+
+but this will also remove the file form the working directory. The same can be
+done by
+
+```sh
+rm file.txt
+git add file.txt
+````
+
+This will also, obviously, remove the working copy of the file. This is useful
+if you have already removed the file by ordinary `rm` and want to stage the
+removal for the next commit.
+
+If you want to only record the file removal into the next commit, but not
+actually remove the file from the work directory, use
+
+```sh
+git rm --cached file.txt
+````
+
+## Stay Informed
+
+### git log
 
 Now we can view the project log:
 
@@ -110,14 +145,14 @@ git log
 Here, each commit is identified by a hash-code. The first commit by
 `d7b4272...` and so on.
 
-**Why not number the commits?** At its roots, git is designed for collaborative 
-work, where commits are seen as quite independent units, sometimes also called 
-changesets. Say, I am working on a project, and someone else contributes some 
-important bugfixes. I can take only those commits that contain the piece of 
-work that they made on the bugfixes. I would then apply only these commits on 
-top my ongoing work. (Actually I might apply them to the *bottom* of my ongoing 
-work, but we'll come to rebasing in a later chapter.) In these situations, a 
-linear numbering of commits would be different for each person, and thus git 
+**Why not number the commits?** At its roots, git is designed for collaborative
+work, where commits are seen as quite independent units, sometimes also called
+changesets. Say, I am working on a project, and someone else contributes some
+important bugfixes. I can take only those commits that contain the piece of
+work that they made on the bugfixes. I would then apply only these commits on
+top my ongoing work. (Actually I might apply them to the *bottom* of my ongoing
+work, but we'll come to rebasing in a later chapter.) In these situations, a
+linear numbering of commits would be different for each person, and thus git
 doesn't attempt to do numbering at all.
 
 Instead git calculates a [SHA-1][1] identifier from the contents and the commit
@@ -142,22 +177,22 @@ git log --all --graph --decorate --oneline
     * ffdabdc Edit a.txt
     * d7b4272 First commit: add a.txt
 
-## Alias
+### Alias
 
 I like it so much that I make an *alias* for it, by adding this to my
 `~/.gitconfig`:
 
     [alias]
-        lg = log --oneline --abbrev-commit --all --graph --decorate
+        lg = log --all --graph --decorate --oneline
 
 So from now on I can just say `git lg`.
 
-## git help <command>
+### git help <command>
 
 You can also look at `git help log`, or `man git-log`, to see what kind of
 options `log` takes, but the manpage is long.
 
-## git status
+### git status
 
 Because we just committed above, and have made no new changes, our status is
 clean:
@@ -227,19 +262,31 @@ In general, the status of a file can be one of these four:
 Actually, a file can be both staged and modified, if you have further edited
 the file after staging it.
 
-## The staging area
+**Colors:** I personally don't like some of the default colors used by `git
+status', so I add to my `.gitconfig`
+
+    [color "status"]
+        untracked = cyan
+        changed = bold red
+
+The default for both of these is red. Red is a very strong color, and I don't
+like my untracked files to scream at me in red, thus cyan. But modified tracked
+files which are not staged for commit yet, I like them to scream at me in bold
+red, not just ordinary red.
+
+## The staging area, or index
 
 Most version control systems don't have the concept of staging. Either a file
 is unmodified after the last commit, or it has uncommitted changes, and that's
 it. But in git, the commit process has two steps:
 
-First use `git add` to prepare the files into the staging area, and then run 
-`git commit`. The files you stage with `git add` can be a subset of the files 
-you have edited, and only this subset will be committed. The other modified 
-files will keep their status as modified, and their modified content is not 
-committed. You can add several files in one command (`git add a.txt b.txt`), 
-and use all normal shell wildcards (`git add *.txt` etc.). If you have staged a 
-file, and edit it further, you need to stage it again (run `git add` again) for 
+First use `git add` to prepare the files into the staging area, and then run
+`git commit`. The files you stage with `git add` can be a subset of the files
+you have edited, and only this subset will be committed. The other modified
+files will keep their status as modified, and their modified content is not
+committed. You can add several files in one command (`git add a.txt b.txt`),
+and use all normal shell wildcards (`git add *.txt` etc.). If you have staged a
+file, and edit it further, you need to stage it again (run `git add` again) for
 the new edits to be staged for the next commit.
 
 You can stage all files, *including* previously untracked files, that have been
@@ -271,10 +318,197 @@ staged for next commit.)
 
 [3]: https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging
 
-## git diff
+### Unstaging
 
-## git show
+If you want to remove a file from the staging area, so effectively undo `git
+add file.txt`:
 
-## git rm
+```sh
+git reset file.txt
+```
+
+**Exception:** If you have staged a file removal and the file is also removed
+from the working directory, and you want to undo the staging, you need to use
+the syntax `git reset -- file.txt` instead of `git reset file.txt`. The longer
+syntax works always, but only in that case it is needed. After undoing the add
+you could then also restore the file by
+
+```sh
+git show HEAD:file.txt > file.txt
+```
+
+but actually
+
+```
+git checkout HEAD file.txt
+```
+
+does the same, and is shorter. Also, if you wanted to both undo the staging of
+the file removal and retrieve the file from the most recent commit, you don't
+need the `reset` command at all, `git checkout HEAD file.txt` actually does
+both steps. (But if the file was staged for removal, but not removed from the
+working directory, and also contained uncommitted modifications, this will
+overwrite the file.)
+
+## Looking Back in Time
+
+### git show
+
+You can get the contents of the version of a file in the index (staging area)
+by
+
+```sh
+git show :file.txt
+```
+
+and the contents of a file in the most recent commit by
+
+
+```sh
+git show HEAD:file.txt
+```
+
+`HEAD` refers to the most recent commit. For the second most recent,
+
+```sh
+git show HEAD~1:file.txt
+```
+
+and so forth. You can also refer to a commit by its hash,
+
+```sh
+git show d7b4272:file.txt
+```
+
+If you are in a different directory than the files you are trying to show, you
+need to use the correct path after the colon.
+
+### git diff
+
+```sh
+git diff file.txt
+```
+
+shows the [diff][4] from the file in the staging area to the file in the
+working directory.
+
+[4]: https://en.wikipedia.org/wiki/Diff_utility
+
+```sh
+git diff HEAD file.txt
+```
+
+shows the diff from the most recent commit to the working file. Use
+`HEAD~1`, `HEAD~2` etc., or the commit hash, for older commits.
+
+```sh
+git diff --cached file.txt
+git diff HEAD:file.txt :file.txt
+```
+
+both show the diff from the last commit to the staged version of the file.
+
+## Going Back in Time
 
 ## git checkout
+
+Using the repository we made above, we now have
+
+```sh
+git lg
+```
+
+    * ac2e1a2 (HEAD, master) Add new file: b.txt
+    * ffdabdc Edit a.txt
+    * d7b4272 First commit: add a.txt
+
+If you want to overwrite `a.txt' by a previous version, you can
+
+```sh
+git checkout d7b4272 a.txt
+```
+
+(In this case, also `HEAD~2` would be the same as `d7b4272`.)
+
+You can also overwrite all tracked files to the state the project was at
+in commit `d7b4272` by
+
+```sh
+git checkout d7b4272
+```
+
+If you have uncommitted changes in some tracked files (staged or not staged),
+git will warn you about this and abort. So make sure you have committed all the
+changes, so `git status` is clean. (It's ok to have untracked files, they will
+not be harmed. ...And even if in some weird situation they were about to be
+harmed, `git ckeckout` without the `--force` option will warn and abort, not
+overwrite your files. For example: you had a file in some older commits, then
+you removed the file from the project in later commits, then you create a file
+with the same name again in the working directory. Now, as far as git is
+concerned, `git status` will show this file as untracked. But if you checkout
+some of those older commits with `--force`, the file will be overwritten.)
+
+So, you can let all the uncommitted changes (both staged and not staged)
+to be destroyed by
+
+```sh
+git checkout --force d7b4272
+```
+
+(Also just `-f` works as short for `--force` here.)
+
+You can look at files, compile, test, and do whatever. To get back to the most
+recent commit, do
+
+```sh
+git checkout master
+```
+
+or, if you changed some of the tracked files while you were testing and looking
+around, but are ok to let these changes to be overwritten, do
+
+```sh
+git checkout --force master
+```
+
+You can go back to any of the old commits, play around as much as you like, and
+in the end `git ckeckout master` or `git checkout --force master` will always
+bring you back up to date to the most recent commit.
+
+Now I need to make two delicate points: First, please go back to the most
+recent commit by referring to it by `master`, not by referring to it by its
+hash (which in my case here is `ac2e1a2`).
+
+Second, if you are in an older commit ...for example if I do
+
+```sh
+git checkout -f ffdabdc
+```
+
+to get to the second commit ...and then you look at the git log in the default
+form, or in any form without the option `--all`, you might get scared.
+
+If I do
+
+```sh
+git log --all --graph --decorate --oneline
+```
+
+    * ac2e1a2 (master) Add new file: b.txt
+    * ffdabdc (HEAD) Edit a.txt
+    * d7b4272 First commit: add a.txt
+
+all is well. (`HEAD` points to the commit we are at, after the checkout.)
+But if I look at the log without `--all`
+
+```sh
+git log --graph --decorate --oneline
+```
+
+    * ffdabdc (HEAD) Edit a.txt
+    * d7b4272 First commit: add a.txt
+
+OMG! GIT ATE MY WORK! No it didn't. For some reason, by default the log only
+shows commits preceding the commit we have checked out. By adding the `--all`
+to the log command, we get a list of the full log. (Or, full log of commits in
+our `master` branch here, to be exact.)
