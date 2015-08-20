@@ -1,4 +1,4 @@
-# 3. Creating Repositories and Committing
+# 3. Creating Repositories and Commits
 
 We initialize a new repository for our project and start saving snapshots or,
 committing changes, as we say in git speak.
@@ -483,7 +483,7 @@ git lg
     * ffdabdc Edit a.txt
     * d7b4272 First commit: add a.txt
 
-If you want to overwrite `a.txt' by a previous version, you can
+If you want to overwrite `a.txt` by a previous version, you can
 
 ```sh
 git checkout d7b4272 a.txt
