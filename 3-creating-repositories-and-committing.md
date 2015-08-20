@@ -1,13 +1,11 @@
-# 2. Git for One Person
+# 3. Creating Repositories and Committing
 
-The simplest case is a one-person workflow. We only save snapshots (commits)
-of our work as we proceed in a linear fashion.
+We initialize a new repository for our project and start saving snapshots or,
+committing changes, as we say in git speak.
 
-## Create commits
+## Create a Repository: `git init`
 
-### `git init`
-
-Let's create a new project
+Create a new project
 
 ```sh
 mkdir myproject
@@ -15,19 +13,17 @@ cd myproject
 git init
 ```
 
-The `git init` will create a hidden `.git` directory (so, `myproject/.git`)
-where git will keep all its stuff. In a strict sense, the `.git` directory is
-now a repository, or repo for short. In everyday language, the whole
-`myproject` directory, containing both the working files (Or working tree, as
-it is called in git slang. Tree, because it usually contains subdirectories,
-too.) and the `.git` directory, is a project repository. If you for some reason
-want to totally delete your project's version history, you can just `rm -rf
-.git` and the version history is destroyed. Also the `.git` directory contains
-just ordinary files, so you can copy, zip or tar either the `.git` directory or
-the whole project directory and copy or move it around, and it will still
-function as a repository in the new place, wherever you put it.
+`git init` will create a hidden `.git` directory (so, `myproject/.git`) where
+git will keep all its stuff. In a strict sense, the `.git` directory is now a 
+repository, or repo for short. In everyday language, the whole `myproject` 
+directory, containing both the working files (Or working tree, as it is called
+in git slang. Tree, because it usually contains subdirectories, too.) and the `.git` directory, is a project repository. If you for some reason want to
+totally delete your project's version history, you can just `rm -rf .git` and
+the version history is destroyed. Also the `.git` directory contains just ordinary files, so you can copy, zip or tar either the `.git` directory or the 
+whole project directory and copy or move it around, and it will still function
+as a repository in the new place, wherever you put it.
 
-### `git add` and `git commit`
+## Commit Changes: `git add` and `git commit`
 
 Now we need some files
 
@@ -56,7 +52,8 @@ git add b.txt
 git commit
 ```
 
-Now git will open your favorite editor, and you can write:
+Now git will open your favorite editor (if you configured it in Chapter 1), and
+you can write:
 
     Add new file: b.txt
 
@@ -70,7 +67,7 @@ Now git will open your favorite editor, and you can write:
     #       new file:   b.txt
     #
 
-### Commit Messages
+## Commit Messages
 
 Traditionally, we first write a simple one-line description of the commit, then
 leave one empty line, and then we can write as long a commit message as we
@@ -80,25 +77,25 @@ By git tradition, we write the commit messages in active tense: *add file*
 instead of *added file*. Kind of thinking about someone else who is considering
 to perhaps include our commits in their version of the project: What will
 adding the work in these commits *do*, instead of what we *did*. Also, it is a
-couple of letters shorter. You can of course write the commit messages however
+couple of letters shorter. You can of course write your commit messages however
 you like.
 
-## `git rm`
+## Removing Files: `git rm`
 
 If you want the next commit to record that a file is removed from the
 project, you can
 
 ```sh
 git rm file.txt
-````
+```
 
-but this will also remove the file form the working directory. The same can be
+This will also remove the file form the working directory. The same can be
 done by
 
 ```sh
 rm file.txt
 git add file.txt
-````
+```
 
 This will also, obviously, remove the working copy of the file. This is useful
 if you have already removed the file by ordinary `rm` and want to stage the
@@ -109,11 +106,13 @@ actually remove the file from the work directory, use
 
 ```sh
 git rm --cached file.txt
-````
+```
+
+After this, `git status` will show the file as untracked.
 
 ## Stay Informed
 
-### git log
+### `git log`
 
 Now we can view the project log:
 
@@ -150,7 +149,7 @@ work, where commits are seen as quite independent units, sometimes also called
 changesets. Say, I am working on a project, and someone else contributes some
 important bugfixes. I can take only those commits that contain the piece of
 work that they made on the bugfixes. I would then apply only these commits on
-top my ongoing work. (Actually I might apply them to the *bottom* of my ongoing
+top my ongoing work. (Actually, I might apply them to the *bottom* of my ongoing
 work, but we'll come to rebasing in a later chapter.) In these situations, a
 linear numbering of commits would be different for each person, and thus git
 doesn't attempt to do numbering at all.
@@ -177,6 +176,26 @@ git log --all --graph --decorate --oneline
     * ffdabdc Edit a.txt
     * d7b4272 First commit: add a.txt
 
+You can also view the log for a certain range of commits
+
+```sh
+git log <commit-a>..<commit-b>
+```
+
+This shows every commit after a (excluding a) until b (including b). Add option
+`--boundary` to also include a.
+
+You can view only those commits in the log, which modify a specified file
+
+
+```sh
+git log -- path/to/file
+```
+
+you can view only those commits on the log, which modify the specified files or files. [Here is a tutorial][3] on many other ways to filter the log.
+
+[3]: https://www.atlassian.com/git/tutorials/git-log/formatting-log-output
+
 ### Alias
 
 I like it so much that I make an *alias* for it, by adding this to my
@@ -187,12 +206,13 @@ I like it so much that I make an *alias* for it, by adding this to my
 
 So from now on I can just say `git lg`.
 
-### git help <command>
+### `git help <command>`
 
 You can also look at `git help log`, or `man git-log`, to see what kind of
-options `log` takes, but the manpage is long.
+options `log` takes, but the manpage is long. There help pages for all git
+commands.
 
-### git status
+### `git status`
 
 Because we just committed above, and have made no new changes, our status is
 clean:
@@ -244,8 +264,9 @@ git status
 In general, the status of a file can be one of these four:
 
 * **Untracked:** File exists in the working directory, but not in the
-  repository. Normal git operations will not touch these files, but there are
-  commands like `git clean` which specifically clean the project directory from
+  repository. (Or more exactly not in the previous commit.) Normal git
+  operations will not touch these files, but there are commands like
+  `git clean` which specifically clean the project directory from
   untracked files.
 
 * **Committed:** File has been committed in some previous commit, and has not
@@ -256,14 +277,14 @@ In general, the status of a file can be one of these four:
   committed, but you have not run `git commit` yet. Specifically, the version of
   the file at the moment when you ran `git add` is staged for the commit.
 
-* **Modified:** File has been modified, and the changes have not been added
+* **Modified:** File has been modified, and the changes have not been staged
   (`git add`) or committed.
 
 Actually, a file can be both staged and modified, if you have further edited
 the file after staging it.
 
 **Colors:** I personally don't like some of the default colors used by `git
-status', so I add to my `.gitconfig`
+status`, so I add to my `.gitconfig`
 
     [color "status"]
         untracked = cyan
@@ -273,6 +294,9 @@ The default for both of these is red. Red is a very strong color, and I don't
 like my untracked files to scream at me in red, thus cyan. But modified tracked
 files which are not staged for commit yet, I like them to scream at me in bold
 red, not just ordinary red.
+
+If `git status` is too verbose for you, `git status -s` (`git status --short`)
+gives shorter output.
 
 ## The staging area, or index
 
@@ -291,10 +315,8 @@ the new edits to be staged for the next commit.
 
 You can stage all files, *including* previously untracked files, that have been
 modified since last commit, by `git add --all`. Or you can stage all modified
-files, *excluding* untracked files, by 'git add --update'. Also, `git commit
+files, *excluding* untracked files, by `git add --update`. Also, `git commit
 -a` is a shorthand for `git add --update ; git commit`.
-
-Sometimes the staging area is called *index*.
 
 Some people feel that this extra "holding area" is just an unnecessary
 complication. Nothing stops you from adding something like
@@ -313,10 +335,10 @@ the changes you have made, one file at a time, and add the files to the staging
 area as a bookkeeping mechanism: these are the files that I have already
 reviewed. Or, after some work modifying several files, you can commit the files
 in separate commits, if that fees like a good idea. (Git even allows for
-[interactive staging][3], to select only part of the edits to a file to be
+[interactive staging][4], to select only part of the edits to a file to be
 staged for next commit.)
 
-[3]: https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging
+[4]: https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging
 
 ### Unstaging
 
@@ -352,7 +374,7 @@ overwrite the file.)
 
 ## Looking Back in Time
 
-### git show
+### `git show`
 
 You can get the contents of the version of a file in the index (staging area)
 by
@@ -383,16 +405,16 @@ git show d7b4272:file.txt
 If you are in a different directory than the files you are trying to show, you
 need to use the correct path after the colon.
 
-### git diff
+### `git diff`
 
 ```sh
 git diff file.txt
 ```
 
-shows the [diff][4] from the file in the staging area to the file in the
+shows the [diff][5] from the file in the staging area to the file in the
 working directory.
 
-[4]: https://en.wikipedia.org/wiki/Diff_utility
+[5]: https://en.wikipedia.org/wiki/Diff_utility
 
 ```sh
 git diff HEAD file.txt
@@ -408,9 +430,48 @@ git diff HEAD:file.txt :file.txt
 
 both show the diff from the last commit to the staged version of the file.
 
+## Using a Graphical diff Viewer
+
+You can open a file in an external diff viewer, I like [Meld][6] (Ubuntu 
+install: `sudo apt-get install meld`). If you just open a working file
+
+```sh
+meld file.txt &
+```
+
+meld is clever enough to show the last committed version on the left, and the 
+working copy on the right:
+
+![meld diff viewer][meld-screenshot]
+
+Unfortunately meld is not clever enough to let you see older commits. But if
+you configure in your `.gitconfig`
+
+    [diff]
+        tool = meld
+    [difftool]
+        prompt = false
+
+you can for example
+
+```sh
+git difftool d7b4272:a.txt a.txt
+```
+
+to open meld to compare any two versions of a file you want. Just to remind: `file.txt` means the working copy of a file, `:file.txt` means the version of
+the file in the staging area, and `<commit-identifier>:file` specifies the file
+in a commit. In the above case, also a bit shorter `git difftool d7b4272 a.txt` would work. The first argument specifies only the commit, and the second
+argument specifies the working copy of the file, so then git is able to guess
+that we want to view the same filename from the commit. But this shorter form
+only works if the second argument is the working copy.
+
+
+[6]: http://meldmerge.org/
+[meld-screenshot]: https://github.com/samposm/git-guide/blob/master/images/meld-screenshot.png
+
 ## Going Back in Time
 
-## git checkout
+## `git checkout`
 
 Using the repository we made above, we now have
 
@@ -477,7 +538,8 @@ bring you back up to date to the most recent commit.
 
 Now I need to make two delicate points: First, please go back to the most
 recent commit by referring to it by `master`, not by referring to it by its
-hash (which in my case here is `ac2e1a2`).
+hash (which in my case here is `ac2e1a2`). I will explain why in a later
+chapter.
 
 Second, if you are in an older commit ...for example if I do
 
@@ -488,7 +550,7 @@ git checkout -f ffdabdc
 to get to the second commit ...and then you look at the git log in the default
 form, or in any form without the option `--all`, you might get scared.
 
-If I do
+If I use
 
 ```sh
 git log --all --graph --decorate --oneline
@@ -512,3 +574,14 @@ OMG! GIT ATE MY WORK! No it didn't. For some reason, by default the log only
 shows commits preceding the commit we have checked out. By adding the `--all`
 to the log command, we get a list of the full log. (Or, full log of commits in
 our `master` branch here, to be exact.)
+
+
+## What's Next?
+
+Now we can add commits to our project in a linear fashion. Next we should learn
+how to keep alternative lines of work in separate branches in a single repo,
+how to keep our local repo in sync with one or several remotes, and how to work together with other people by pulling their commits into our own repo.
+
+But I don't really feel that it is possible to meaningfully explain how to work
+with several branches, modify, reorganize and merge them, without first
+exposing something about git's internal representation of these things.
