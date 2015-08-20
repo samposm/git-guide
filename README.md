@@ -2,14 +2,18 @@
 
 ## Contents
 
-1. [In the Beginning][1]
-2. [Cloning Public Repositories][2]
-3. [Creating Repositories and Committing][3]
+1\. [In the Beginning][1]  
+2\. [Cloning Public Repositories][2]  
+3\. [Creating Repositories and Commits][3]  
+
+A1. [Full gitconfig][A1]
 
 
 [1]: https://github.com/samposm/git-guide/blob/master/1-in-the-beginning.md
 [2]: https://github.com/samposm/git-guide/blob/master/2-cloning-public-repositories.md
-[3]: https://github.com/samposm/git-guide/blob/master/3-creating-repositories-and-committing.md
+[3]: https://github.com/samposm/git-guide/blob/master/3-creating-repositories-and-commits.md
+
+[A1]: https://github.com/samposm/git-guide/blob/master/A1-full-gitconfig.md
 
 
 ---

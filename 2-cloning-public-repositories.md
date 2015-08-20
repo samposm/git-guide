@@ -55,3 +55,4 @@ staged/unstaged and committed mean.)
 over which git can clone.
 
 [2]: https://git-scm.com/book/tr/v2/Git-on-the-Server-The-Protocols
+[3]: https://git-scm.com/book/en/v2
