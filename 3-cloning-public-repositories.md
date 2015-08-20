@@ -1,4 +1,4 @@
-# 2. Cloning Public Repositories
+# 3. Cloning Public Repositories
 
 Perhaps you only want to use git to download someone else's project, so you can 
 compile and use their software. In a lot of cases people may not even provide 

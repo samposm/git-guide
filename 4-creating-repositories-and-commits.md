@@ -1,4 +1,4 @@
-# 3. Creating Repositories and Commits
+# 4. Creating Repositories and Commits
 
 We initialize a new repository for our project and start saving snapshots or,
 committing changes, as we say in git speak.
@@ -17,9 +17,11 @@ git init
 git will keep all its stuff. In a strict sense, the `.git` directory is now a 
 repository, or repo for short. In everyday language, the whole `myproject` 
 directory, containing both the working files (Or working tree, as it is called
-in git slang. Tree, because it usually contains subdirectories, too.) and the `.git` directory, is a project repository. If you for some reason want to
+in git slang. Tree, because it usually contains subdirectories, too.) and the
+ `.git` directory, is a project repository. If you for some reason want to
 totally delete your project's version history, you can just `rm -rf .git` and
-the version history is destroyed. Also the `.git` directory contains just ordinary files, so you can copy, zip or tar either the `.git` directory or the 
+the version history is destroyed. Also the `.git` directory contains just
+ordinary files, so you can copy, zip or tar either the `.git` directory or the 
 whole project directory and copy or move it around, and it will still function
 as a repository in the new place, wherever you put it.
 
@@ -192,7 +194,8 @@ You can view only those commits in the log, which modify a specified file
 git log -- path/to/file
 ```
 
-you can view only those commits on the log, which modify the specified files or files. [Here is a tutorial][3] on many other ways to filter the log.
+you can view only those commits on the log, which modify the specified files or
+files. [Here is a tutorial][3] on many other ways to filter the log.
 
 [3]: https://www.atlassian.com/git/tutorials/git-log/formatting-log-output
 
@@ -458,9 +461,11 @@ you can for example
 git difftool d7b4272:a.txt a.txt
 ```
 
-to open meld to compare any two versions of a file you want. Just to remind: `file.txt` means the working copy of a file, `:file.txt` means the version of
+to open meld to compare any two versions of a file you want. Just to remind:
+`file.txt` means the working copy of a file, `:file.txt` means the version of
 the file in the staging area, and `<commit-identifier>:file` specifies the file
-in a commit. In the above case, also a bit shorter `git difftool d7b4272 a.txt` would work. The first argument specifies only the commit, and the second
+in a commit. In the above case, also a bit shorter `git difftool d7b4272 a.txt`
+would work. The first argument specifies only the commit, and the second
 argument specifies the working copy of the file, so then git is able to guess
 that we want to view the same filename from the commit. But this shorter form
 only works if the second argument is the working copy.
@@ -580,7 +585,8 @@ our `master` branch here, to be exact.)
 
 Now we can add commits to our project in a linear fashion. Next we should learn
 how to keep alternative lines of work in separate branches in a single repo,
-how to keep our local repo in sync with one or several remotes, and how to work together with other people by pulling their commits into our own repo.
+how to keep our local repo in sync with one or several remotes, and how to work
+together with other people by pulling their commits into our own repo.
 
 But I don't really feel that it is possible to meaningfully explain how to work
 with several branches, modify, reorganize and merge them, without first
