@@ -6,6 +6,7 @@
 2\. [In the Beginning][2]  
 3\. [Cloning Public Repositories][3]  
 4\. [Creating Repositories and Commits][4]  
+5\. [Anatomy of a git Commit][5]  
 
 A1. [Full gitconfig][A1]  
 
@@ -13,6 +14,7 @@ A1. [Full gitconfig][A1]
 [2]: https://github.com/samposm/git-guide/blob/master/2-in-the-beginning.md
 [3]: https://github.com/samposm/git-guide/blob/master/3-cloning-public-repositories.md
 [4]: https://github.com/samposm/git-guide/blob/master/4-creating-repositories-and-commits.md
+[5]: https://github.com/samposm/git-guide/blob/master/5-anatomy-of-a-git-commit.md
 
 [A1]: https://github.com/samposm/git-guide/blob/master/A1-full-gitconfig.md
 
