@@ -1,4 +1,4 @@
-# 2. In the Beginning
+﻿# 2. In the Beginning
 
 ## Install Git
 
@@ -20,8 +20,12 @@ to install git. You need the sudo password.
 **Fedora**:
 
 ```sh
-    sudo yum install git
+sudo yum install git
 ```
+
+Other Linuxes, [look here][1].
+
+[1]: http://git-scm.com/download/linux
 
 ## Introduce Yourself
 

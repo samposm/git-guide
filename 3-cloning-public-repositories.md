@@ -1,4 +1,4 @@
-# 3. Cloning Public Repositories
+﻿# 3. Cloning Public Repositories
 
 Perhaps you only want to use git to download someone else's project, so you can 
 compile and use their software. In a lot of cases people may not even provide 
@@ -51,7 +51,7 @@ directory contained untracked, unstaged, or staged but uncommitted work, the
 clone will not get those. (See the next chapter for what untracked, 
 staged/unstaged and committed mean.)
 
-[This section][2] of the [Pro Git book][3] tells more about different protocols
+[This section][2] in [Pro Git][3] tells more about different protocols
 over which git can clone.
 
 [2]: https://git-scm.com/book/tr/v2/Git-on-the-Server-The-Protocols

@@ -1,4 +1,4 @@
-# 4. Creating Repositories and Commits
+﻿# 4. Creating Repositories and Commits
 
 We initialize a new repository for our project and start saving snapshots or,
 committing changes, as we say in git speak.
@@ -327,7 +327,7 @@ complication. Nothing stops you from adding something like
     acommit = !git add --all && git commit
     ucommit = !git add --update && git commit
 
-to the `[alias]` section of you `.gitconfig`. (The `!` syntax tells git to run
+to the `[alias]` section of your `.gitconfig`. (The `!` syntax tells git to run
 the whole alias as a shell command, so we can use `&&` to combine two commands.)
 Well, `git ucommit` does now the same things as `git commit -a`.
 
@@ -435,8 +435,8 @@ both show the diff from the last commit to the staged version of the file.
 
 ## Using a Graphical diff Viewer
 
-You can open a file in an external diff viewer, I like [Meld][6] (Ubuntu 
-install: `sudo apt-get install meld`). If you just open a working file
+You can open a file in an external diff viewer, I like [Meld][6] (Ubuntu: `sudo
+apt-get install meld`). If you just open a working file
 
 ```sh
 meld file.txt &
