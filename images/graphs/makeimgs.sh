@@ -9,6 +9,8 @@ function makeimg {
   inkscape --verb=FitCanvasToDrawing \
     --verb=FileSave --verb=FileClose --verb=FileQuit \
     $1.svg
+
+  convert -density 150 $1.svg $1.png
 }
 
 makeimg graph1

@@ -1,4 +1,4 @@
-# A Guide to Git
+﻿# A Guide to Git
 
 ## Contents
 
@@ -7,6 +7,7 @@
 3\. [Cloning Public Repositories][3]  
 4\. [Creating Repositories and Commits][4]  
 5\. [Anatomy of a git Commit][5]  
+6\. [Graph and Pointers][6]  
 
 A1. [Full gitconfig][A1]  
 
@@ -15,6 +16,7 @@ A1. [Full gitconfig][A1]
 [3]: https://github.com/samposm/git-guide/blob/master/3-cloning-public-repositories.md
 [4]: https://github.com/samposm/git-guide/blob/master/4-creating-repositories-and-commits.md
 [5]: https://github.com/samposm/git-guide/blob/master/5-anatomy-of-a-git-commit.md
+[6]: https://github.com/samposm/git-guide/blob/master/6-graph-and-pointers.md
 
 [A1]: https://github.com/samposm/git-guide/blob/master/A1-full-gitconfig.md
 
