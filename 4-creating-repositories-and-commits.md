@@ -1,7 +1,7 @@
 ﻿# 4. Creating Repositories and Commits
 
 We initialize a new repository for our project and start saving snapshots or,
-committing changes, as we say in git speak.
+as we say in git speak, committing changes.
 
 ## Create a Repository: `git init`
 
@@ -94,7 +94,7 @@ project, you can
 git rm file.txt
 ```
 
-This will also remove the file form the working directory. The same can be
+This will also remove the file from the working directory. The same can be
 done by
 
 ```sh
@@ -151,7 +151,7 @@ Here, each commit is identified by a hash-code. The first commit by
 
 **Why not number the commits?** At its roots, git is designed for collaborative
 work, where commits are seen as quite independent units, sometimes also called
-changesets. Say, I am working on a project, and someone else contributes some
+changesets. Say I am working on a project, and someone else contributes some
 important bugfixes. I can take only those commits that contain the piece of
 work that they made on the bugfixes. I would then apply only these commits on
 top my ongoing work. (Actually, I might apply them to the *bottom* of my ongoing
@@ -190,7 +190,7 @@ git log <commit-a>..<commit-b>
 This shows every commit after a (excluding a) until b (including b). Add option
 `--boundary` to also include a.
 
-You can view only those commits in the log, which modify a specified file
+You can view only those commits in the log which modify a specified file
 
 
 ```sh
