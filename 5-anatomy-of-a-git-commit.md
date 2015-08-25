@@ -144,7 +144,7 @@ git cat-file -p 9524aad
 ```
     I think we should call it your grave!
 
-If you put the same text content in the files, used same file and directory names, and if you shell process has similar umask as I have (0002), your blobs and trees should have the same hashes, too. (Git doesn't store file permissions in full detail (only as: regular file, group-writeable file, executable file), and it doesn't keep the permissions of the actual files, but uses the umask from the parent process, i.e. your shell.)
+If you put the same text content in the files, used same file and directory names, and if your shell process has similar umask as I have (0002), your blobs and trees should have the same hashes, too. (Git doesn't store file permissions in full detail (only as: regular file, group-writeable file, executable file), and it doesn't keep the permissions of the actual files, but uses the umask from the parent process, i.e. your shell.)
 
 The last object is a commit-object. You will have it under a different hash than I have here. (Unless you have same name, same unix time to the second, and same time zone as I have here.)
 
