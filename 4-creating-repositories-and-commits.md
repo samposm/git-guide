@@ -197,8 +197,7 @@ You can view only those commits in the log which modify a specified file
 git log -- path/to/file
 ```
 
-you can view only those commits on the log, which modify the specified files or
-files. [Here is a tutorial][3] on many other ways to filter the log.
+[Here is a tutorial][3] on many other ways to filter the log.
 
 [3]: https://www.atlassian.com/git/tutorials/git-log/formatting-log-output
 
