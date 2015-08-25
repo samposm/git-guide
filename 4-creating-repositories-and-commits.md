@@ -540,7 +540,7 @@ git checkout --force master
 ```
 
 You can go back to any of the old commits, play around as much as you like, and
-in the end `git ckeckout master` or `git checkout --force master` will always
+in the end `git checkout master` or `git checkout --force master` will always
 bring you back up to date to the most recent commit.
 
 Now I need to make two delicate points: First, please go back to the most
