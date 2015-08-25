@@ -80,7 +80,10 @@ instead of *added file*. Kind of thinking about someone else who is considering
 to perhaps include our commits in their version of the project: What will
 adding the work in these commits *do*, instead of what we *did*. Also, it is a
 couple of letters shorter. You can of course write your commit messages however
-you like.
+you like. There are [longer treatments][tpope] on git commit message best
+practices available
+
+[tpope]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 
 ## Removing Files: `git rm`
 
