@@ -173,4 +173,4 @@ We can see that the commit object contains a reference to a tree (directory), au
 
 Later we will also see merge-commits, so a commit can have more than one parent. Even more than two, git also allows for an octopus merge.
 
-So this is how git stores files and commits. We see that git actually does all the work of storing files already when we run `git add`, and then at commit time git only needs to store the tree objects and the commit object, but these are not large files as they mostly contain references to other objects. So even when committing a lot of changes, `git commit` runs in a blast.
+So this is how git stores files and commits. We see that git actually does all the work of storing files when we run `git add`, and then at commit time it only needs to store the tree objects and the commit object, but these are not large files as they mostly contain references to other objects. So even when committing a lot of changes, `git commit` runs in a blast.
