@@ -30,7 +30,7 @@ as a repository in the new place, wherever you put it.
 Now we need some files
 
 ```sh
-<edit> a.txt
+$EDITOR a.txt
 git add a.txt
 git commit -m'First commit: add a.txt'
 ```
@@ -40,7 +40,7 @@ list of files to be committed, also called the *staging area*, or *index*. Then
 we save (or commit) a snapshot (or a commit) of our project. Let's go on
 
 ```sh
-<edit> a.txt
+$EDITOR a.txt
 git add a.txt
 git commit -m'Edit a.txt'
 ```
@@ -49,7 +49,7 @@ That `-m` is a short way to add a one-line commit message right in the command
 line. We can also write longer commit messages
 
 ```sh
-<edit> b.txt
+$EDITOR b.txt
 git add b.txt
 git commit
 ```
@@ -230,7 +230,7 @@ git status
 If we make a new file, git will tell us it sees it, but it will not touch it.
 
 ```sh
-<edit> x.txt
+$EDITOR x.txt
 git status
 ```
 
@@ -246,7 +246,7 @@ Or if we edit a file that already exists in the repository, git will notify us
 that it has changed.
 
 ```sh
-<edit> b.txt
+$EDITOR b.txt
 git status
 ```
 

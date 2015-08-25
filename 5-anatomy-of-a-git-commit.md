@@ -13,7 +13,7 @@ ls .git
 The hidded directory `.git` is where git keeps its stuff. Make a file
 
 ```sh
-<edit> file1.txt
+$EDITOR file1.txt
 cat file1.txt 
 ```
 
@@ -59,7 +59,7 @@ Let's add one more file, but in a subdirectory:
 ```sh
 mkdir dir
 cd dir
-<edit> file2.txt
+$EDITOR file2.txt
 cd ..
 cat dir/file2.txt
 ```
