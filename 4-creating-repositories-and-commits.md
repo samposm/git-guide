@@ -214,7 +214,7 @@ So from now on I can just say `git lg`.
 ### `git help <command>`
 
 You can also look at `git help log`, or `man git-log`, to see what kind of
-options `log` takes, but the manpage is long. There help pages for all git
+options `log` takes, but the manpage is long. There are help pages for all git
 commands.
 
 ### `git status`
