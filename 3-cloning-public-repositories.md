@@ -9,7 +9,7 @@ download a project. This step is easy:
 
 Cloning means downloading the entire repo, so you get the current code and its 
 version history. (For ways to look at the history, see the next chapter.) For 
-example to get a copy of the [markdown][1] source for this guide, you can
+example, to get a copy of the [markdown][1] source for this guide, you can
 
 [1]: https://help.github.com/articles/markdown-basics/
 
@@ -46,12 +46,12 @@ git clone user@host:/absolute/path/to/repo/
 git clone user@host:relative/path/to/repo/
 ```
 
-By cloning you only get the files up to the latest commit. If the source 
+By cloning, you only get the files up to the latest commit. If the source
 directory contained untracked, unstaged, or staged but uncommitted work, the 
 clone will not get those. (See the next chapter for what untracked, 
 staged/unstaged and committed mean.)
 
-[This section][2] in [Pro Git][3] tells more about different protocols
+[This section][2] in [Pro Git][3] tells more about the different protocols
 over which git can clone.
 
 [2]: https://git-scm.com/book/tr/v2/Git-on-the-Server-The-Protocols
