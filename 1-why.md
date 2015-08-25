@@ -40,7 +40,7 @@ Now it's 2015, and everyone uses services like [GitHub][h9] and [Bitbucket][h10]
 
 The experimental diversity of 2005 is over, and only two systems survived: git and Mercurial, with git having maybe 90% market share. So you probably should choose git.
 
-Having said that, in my opinion for simple use you can get up to speed with Mercurial quicker. You need to learn a fair amount of concepts and background before you can use use git without frequent wtf-moments. For Mercurial, the initial learning curve is friendlier. For a power user, the systems are almost identical in features and capabilities, so you can accomplish almost anything using either, if you know how. (One exception: in Mercurial you can permanently store branch name in commits, in git not ...unless you put it informally in the commit message.)
+Having said that, in my opinion for simple projects you can get up to speed with Mercurial quicker. You need to learn a fair amount of concepts and background before you can use use git without frequent wtf-moments. For Mercurial, the initial learning curve is friendlier. For a power user, the systems are almost identical in features and capabilities, so you can accomplish almost anything using either, if you know how. (One exception: in Mercurial you can permanently store branch name in commits, in git not ...unless you put it informally in the commit message.)
 
 ## Why This Guide
 
