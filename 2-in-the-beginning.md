@@ -23,13 +23,13 @@ to install git. You need the sudo password.
 sudo yum install git
 ```
 
-Other Linuxes, [look here][1].
+For other Linuxes, [look here][1].
 
 [1]: http://git-scm.com/download/linux
 
 ## Introduce Yourself
 
-With a text editor, create a file `.gitconfig` in your home directory, and put there
+With a text editor, create a file `.gitconfig` in your home directory, and write
 
     [user]
         name = Your Name
@@ -37,4 +37,4 @@ With a text editor, create a file `.gitconfig` in your home directory, and put t
     [core]
         editor = gedit
 
-(You could also use a nickname.) When you work with others, they will see this name to identify your work. Instead of gedit, put in your favorite editor.
+(You could also use a nickname.) When you work with others, they will see this name to identify your work. Put in your favorite editor in place of gedit.
